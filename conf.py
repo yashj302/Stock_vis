@@ -1,3 +1,3 @@
-csv = 'DATA//Stock_list.csv'
-pack = 'DATA//pack.json'
+csv = 'assets//Stocks.csv'
+pack = 'assets//pack.json'
 debug=True
