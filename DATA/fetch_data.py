@@ -1,7 +1,7 @@
 import pandas as pd
 import pandas_datareader.data as web
 
-def fetch(name,data_source,startDate,endDate,API_KEY)
+def fetch(name,data_source,startDate,endDate,API_KEY):
     try:
         dataframe = web.DataReader(
             name=name,
@@ -11,10 +11,10 @@ def fetch(name,data_source,startDate,endDate,API_KEY)
             api_key=API_KEY
         )
 
-        return dataframe
+        return dataframe.reset_index()
     
     except Exception as e:
-        print(e)
+        print('FETCH DATA',e)
         return e
 
     
