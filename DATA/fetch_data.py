@@ -1,7 +1,7 @@
 import pandas as pd
 import pandas_datareader.data as web
 
-def data(name,data_source,startDate,endDate,API_KEY)
+def fetch(name,data_source,startDate,endDate,API_KEY)
     try:
         dataframe = web.DataReader(
             name=name,

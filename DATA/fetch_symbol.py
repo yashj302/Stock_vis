@@ -7,11 +7,13 @@ def lst_sym(json_pack):
         for resource in res.resources:
             if(resource.descriptor['datahub']['type'] == 'derived/csv'):
                 data = resource.read()
-                df = pd.DataFrame(data,columns=['STOCK','1','2','3','4','5','6'])
+                df = pd.DataFrame(data,columns=['STOCK','Name','2','3','4','5','6'])
+
                 if(len(df)):
-                    return df['STOCK'].values
+                    return df[['STOCK','Name']]
                 else:
                     break
+
         return False
 
     except Exception as e:
@@ -21,4 +23,4 @@ def lst_sym(json_pack):
 
 def off_sym(csv):
     df = pd.read_csv(csv)
-    return df['STOCK'].values
+    return df[['STOCK','Name']]
