@@ -9,6 +9,7 @@ from dash.dependencies import Input,Output,State
 import conf
 from Layout_dash import LAYT
 app = dash.Dash()
+# deployment = app.server
 from layout_conf import *
 import dash_core_components as dcc
 layt = LAYT(conf.csv,conf.pack)
