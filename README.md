@@ -32,7 +32,7 @@ _Set an Environment variable "ALPHAVAN" with Api key as Value or You can change 
     * git add .
     * git commit -m "First Deployment"
     * git push heroku master
-    * `These are experimental if using Free tier` heroku ps:scale web=1
+    * These are experimental if using Free tier `heroku ps:scale web=1`
     * Deployment will be on url : `https://<unique_name>.herokuapp.com`
     * The next step is setting up api key you can get Free API Key from `https://www.alphavantage.co/`
     * heroku config:set ALPHAVAN=`<APIKEY>`
