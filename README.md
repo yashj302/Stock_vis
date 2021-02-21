@@ -46,3 +46,7 @@ _Set an Environment variable "ALPHAVAN" with Api key as Value or You can change 
 - Replace `<API_KEY>` in Dockerfile with your own API Key
 - Have docker installed on your system and build using command `docker build -t <any_name> .`  use dot(.) if dockerfile present in same folder. This name will be used as image_name.
 - For run `docker run --name <suitablename> -p 8050:8050 <image_name>` port number can be changed in `server.py` and dockerfile and in run command.
+
+
+## Snapshot
+![Stocks Visualize](./snap.PNG)
