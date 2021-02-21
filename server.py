@@ -29,4 +29,4 @@ def follow(symbol,start,end,timeseries):
     return figure
 
 if __name__=='__main__':
-    app.run_server(debug=conf.debug)
+    app.run_server(host='0.0.0.0',port='8050',debug=conf.debug)
