@@ -12,7 +12,7 @@ from Layout_dash import LAYT
 app = dash.Dash(
     __name__, meta_tags=[{"name": "viewport", "content": "width=device-width"}]
 )
-# deployment = app.server
+deployment = app.server
 from layout_conf import *
 import dash_core_components as dcc
 layt = LAYT(conf.csv,conf.pack)
@@ -32,4 +32,4 @@ def follow(symbol,start,end,timeseries):
     return figure
 
 if __name__=='__main__':
-    app.run_server(host='0.0.0.0',port='8060',debug=conf.debug)
+    app.run_server(host='0.0.0.0',port='8050',debug=conf.debug)
