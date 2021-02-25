@@ -22,55 +22,100 @@ class LAYT:
             DF = off_sym(self.csv)
             print(e)
             
-        return html.Div(id='HEAD',children=[
-            html.H1('Stock Comparison Graph'),
-            html.Div(id=DROPDOWN_TITLE,children=[
-                
-                html.H3("Dropdown Multi"),
-                dcc.Dropdown(id=DROPDOWN_ID,
-                            multi=True,
-                            style={'height':40},
-                            options=[{"label": '('+row[1][0]+") "+row[1][1], "value":row[1][0]} for row in DF.iterrows()],
-                            value="AAPL"
+        return html.Div(children=
+            [
+                html.Div(id="output-clientside"),
+                html.Div(
+                [
+                    html.Div(
+                        [
+                            html.Div(
+                                [
+                                    html.H1(
+                                        "Stock Comparision",
+                                        
+                                    ),
+                                    html.H3(
+                                        "Overview", style={"margin-top": "0px"}
+                                    ),
+                                    
+                                ],
+                                
                             )
-                
-                ],style={'display':'inline-block','float':'left','width':'30%'}),
+                        ],
+                        className="one-half column",
+                        id="title",
+                        style={
+                                    "margin-left":"auto",
+                                    "margin-right":"auto",
+                                },
+                    ),
+                ],
+                    id="header",
+                    className="row flex-display",
+                    style={"margin-bottom": "25px"},
+                ),
 
-                html.Div(id=DATEPICKER_TITLE,children=[
-                
-                html.H3("Select range"),
-                dcc.DatePickerRange(
+
+                html.Div(
+                    [
+                        html.Div(
+                                [
+                                    html.P(
+                                        "Filter Class", 
+                                        className="control_label"
+                                        ),
+                                    dcc.Dropdown(
+                                        id=DROPDOWN_TS_ID,
+                                        multi=False,
+                                        options=[   {"label": item ,"value":item} for item in ['av-intraday','av-daily','av-daily-adjusted','av-weekly','av-weekly-adjusted','av-monthly','av-monthly-adjusted','av-forex-daily']],
+                                        value='av-daily',
+                                        className="dcc_control",  
+                                        # labelStyle={"display": "inline-block"},        
+                                    ),
+                                    html.P(
+                                        "Select Date Range:",
+                                        className="control_label",
+                                    ),
+                                    dcc.DatePickerRange(
                                         id=DATEPICKER_ID,
                                         min_date_allowed=date(2010,8,5),
                                         max_date_allowed=date(2021,2,18),
                                         initial_visible_month=date(2020,1,1),
                                         start_date=date(2020,1,1),
                                         end_date=date(2020,1,30),
-                                        style={
-                                            'height':40
-                                        }
-                                    )
+                                        className="dcc_control" ,                          
+                                    ),
+                                    html.P("Pick Stocks", className="control_label"),
+                                    dcc.Dropdown(
+                                        id=DROPDOWN_ID,
+                                        multi=True,
+                                        style={'height':40},
+                                        options=[{"label": '('+row[1][0]+") "+row[1][1], "value":row[1][0]} for row in DF.iterrows()],
+                                        value="AAPL",
+                                        className="dcc_control",
+                                    ),                
+                                ],
+                                className="pretty_container four columns",
+                                id="cross-filter-options",
+                            ),
+                            html.Div(
+                            [
+                                html.Div(
+                                    [dcc.Graph(id=FIGURE_ID)],
+                                    id="countGraphContainer",
+                                    className="pretty_container",
+                                ),
+                            ],
+                            id="right-column",
+                            className="eight columns",
+                            
+                            ),
+                    ],
+                    className="row flex-display",
+            ),
 
-                ],style={'float':'middle','margin-left':'8%','width':'25%','display':'inline-block'}),
-
-            html.Div(id=DROPDOWN_TS,children=[
-                
-                html.H3("Time-Series"),
-                dcc.Dropdown(   id=DROPDOWN_TS_ID,
-                                multi=False,
-                                style={
-                                            'height':40
-                                        },
-                                options=[   {"label": item ,"value":item} for item in ['av-intraday','av-daily','av-daily-adjusted','av-weekly','av-weekly-adjusted','av-monthly','av-monthly-adjusted','av-forex-daily']],
-                                value='av-daily'          
-                            )
-
-                ],style={'float':'right','margin-right':'10%','width':'25%','display':'inline-block'}),
-
-            html.Div(id=FIGURE_TITLE,children=[
-                
-                html.H3("Figure"),
-                dcc.Graph(id=FIGURE_ID)
-                ],style={'width':'100%'}),
-
-            ])
+        ],
+        id='mainContainer',
+        style={"display": "flex", "flex-direction": "column"},
+    )
